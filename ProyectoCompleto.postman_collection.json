@@ -1,0 +1,640 @@
+{
+	"info": {
+		"_postman_id": "0c48e6c2-f196-4cc3-8bbf-5114b79ecf73",
+		"name": "ProyectoCompleto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16798137"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Post Cliente",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombreUsuario\": \"juanb\",\r\n  \"email\": \"juanb@example.com\",\r\n  \"contrasena\": \"1234\",\r\n  \"rol\": \"cliente\",\r\n  \"estado\": \"activo\",\r\n  \"nombreCompleto\": \"Juan Bustos\",\r\n  \"rut\": \"12.345.678-9\",\r\n  \"direccion\": \"Av. Siempre Viva 123\",\r\n  \"telefono\": \"+56911112222\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Vendedor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombreUsuario\": \"vendedor01\",\r\n  \"email\": \"vendedor01@ejemplo.com\",\r\n  \"contrasena\": \"abc123\",\r\n  \"rol\": \"vendedor\",\r\n  \"estado\": \"activo\",\r\n  \"nombreCompleto\": \"Camila Pérez\",\r\n  \"rut\": \"11.223.334-5\",\r\n  \"telefono\": \"+56911110000\",\r\n  \"areaVentas\": \"Región Metropolitana\",\r\n  \"direccion\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombreUsuario\": \"admin01\",\r\n  \"email\": \"admin01@ejemplo.com\",\r\n  \"contrasena\": \"adminpass\",\r\n  \"rol\": \"admin\",\r\n  \"estado\": \"activo\",\r\n  \"nombreCompleto\": null,\r\n  \"rut\": null,\r\n  \"telefono\": null,\r\n  \"areaVentas\": null,\r\n  \"direccion\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Api Gateway",
+			"item": [
+				{
+					"name": "Ping",
+					"item": [
+						{
+							"name": "Ping",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/ping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"ping"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Usuarios",
+					"item": [
+						{
+							"name": "Login Gateway",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombreUsuario\": \"admin01\",\r\n  \"contrasena\": \"adminpass\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8888/api/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Usuarios",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/usuarios",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Usuarios ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjAxIiwidXNlcm5hbWUiOiJhZG1pbjAxIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NDgyNDE1MjAsImV4cCI6MTc0ODMyNzkyMH0.kX1ZJ4X1mqb_OVF2oP_n1PnkzMJk72uwTq3pD3VQrxRSqK3RC6bbbF9p6pjwiewPTB_D-8nRj2bJ3F3d_rqd6g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/usuarios/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"usuarios",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Usuario ID SOLO ADMIN",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/usuarios/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"usuarios",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Productos",
+					"item": [
+						{
+							"name": "Post Producto",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTc0OTAxNTg4NywiZXhwIjoxNzQ5MTAyMjg3fQ.dh7XX3RyG9sNfCTqlGCWXGZ3e8dVjmG6OQH8VO9l4Y2PqB5KqnjI4DMhrgZSRP0BOEcsKO19gFZXV41pp8d_PQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Laptop Gamer\",\r\n  \"descripcion\": \"Laptop con procesador Intel i7 y 16GB RAM\",\r\n  \"precioUnitario\": 1199900,\r\n  \"stock\": 25,\r\n  \"categoria\": \"Tecnología\",\r\n  \"activo\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/productos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"productos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Productos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/usuarios",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"usuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Productos ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjAxIiwidXNlcm5hbWUiOiJhZG1pbjAxIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NDgyNDE1MjAsImV4cCI6MTc0ODMyNzkyMH0.kX1ZJ4X1mqb_OVF2oP_n1PnkzMJk72uwTq3pD3VQrxRSqK3RC6bbbF9p6pjwiewPTB_D-8nRj2bJ3F3d_rqd6g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/usuarios/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"usuarios",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Producto ID SOLO ADMIN",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/usuarios/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"usuarios",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Clientes",
+					"item": [
+						{
+							"name": "Post Clientes",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTc0OTAxNTg4NywiZXhwIjoxNzQ5MTAyMjg3fQ.dh7XX3RyG9sNfCTqlGCWXGZ3e8dVjmG6OQH8VO9l4Y2PqB5KqnjI4DMhrgZSRP0BOEcsKO19gFZXV41pp8d_PQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Laptop Gamer\",\r\n  \"descripcion\": \"Laptop con procesador Intel i7 y 16GB RAM\",\r\n  \"precioUnitario\": 1199900,\r\n  \"stock\": 25,\r\n  \"categoria\": \"Tecnología\",\r\n  \"activo\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Clientes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Cliente ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjAxIiwidXNlcm5hbWUiOiJhZG1pbjAxIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NDgyNDE1MjAsImV4cCI6MTc0ODMyNzkyMH0.kX1ZJ4X1mqb_OVF2oP_n1PnkzMJk72uwTq3pD3VQrxRSqK3RC6bbbF9p6pjwiewPTB_D-8nRj2bJ3F3d_rqd6g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/clientes/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"clientes",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Cliente ID SOLO ADMIN",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/clientes/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"clientes",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post Clientes",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTc0OTAxNTg4NywiZXhwIjoxNzQ5MTAyMjg3fQ.dh7XX3RyG9sNfCTqlGCWXGZ3e8dVjmG6OQH8VO9l4Y2PqB5KqnjI4DMhrgZSRP0BOEcsKO19gFZXV41pp8d_PQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"nombre\": \"Laptop Gamer\",\r\n  \"descripcion\": \"Laptop con procesador Intel i7 y 16GB RAM\",\r\n  \"precioUnitario\": 1199900,\r\n  \"stock\": 25,\r\n  \"categoria\": \"Tecnología\",\r\n  \"activo\": true\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Clientes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"clientes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Cliente ID",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjAxIiwidXNlcm5hbWUiOiJhZG1pbjAxIiwicm9sIjoiYWRtaW4iLCJpYXQiOjE3NDgyNDE1MjAsImV4cCI6MTc0ODMyNzkyMH0.kX1ZJ4X1mqb_OVF2oP_n1PnkzMJk72uwTq3pD3VQrxRSqK3RC6bbbF9p6pjwiewPTB_D-8nRj2bJ3F3d_rqd6g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/clientes/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"clientes",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Cliente ID SOLO ADMIN",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8888/api/proxy/clientes/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8888",
+									"path": [
+										"api",
+										"proxy",
+										"clientes",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,14 @@
+# Java
+target/
+*.class
+
+# Maven
+.mvn/
+!mvnw
+!mvnw.cmd
+
+# IDEs
+.idea/
+*.iml
+*.log
+*.swp
