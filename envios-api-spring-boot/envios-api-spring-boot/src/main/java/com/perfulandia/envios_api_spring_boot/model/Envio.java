@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Envio {
+public class Envio extends RepresentationModel<Envio> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
